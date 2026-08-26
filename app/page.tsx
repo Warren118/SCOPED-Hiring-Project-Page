@@ -84,11 +84,9 @@ export default function Home() {
         <div className="visual-caption"><span className="pulse" /> PROCESS-AWARE FAIRNESS DIAGNOSIS</div>
         <div className="hero-inputs"><div><span>CV A</span><b>Matched merit</b><small>continuous history</small></div><div className="warm"><span>CV B</span><b>Matched merit</b><small>career-gap field</small></div></div>
         <div className="hero-stages"><span>PRIVATE ASSESSMENT</span><span>TRAJECTORY LEDGER</span><span>FINAL REVIEW</span></div>
-        <div className="hero-annotation diverges">PROCESS DIVERGES</div>
         <div className="hero-track calm"><b>CV A</b><i /><span>standard review</span><strong>HIRE</strong></div>
-        <div className="hero-track risk"><b>CV B</b><i /><span><em>+ risk cue</em> · clarify gap context</span><strong>HIRE</strong></div>
-        <div className="hero-annotation converges">OUTCOME CONVERGES</div>
-        <p>Two tracks can visibly converge at the endpoint while retaining different preceding audit records.</p>
+        <div className="hero-track risk"><b>CV B</b><i /><span><em>PROCESS DIVERGES ·</em> + risk cue · clarify gap context</span><strong>HIRE</strong></div>
+        <p>Two tracks can visibly converge at the endpoint while retaining different preceding audit records.<span className="outcome-inline">OUTCOME CONVERGES</span></p>
       </div>
     </section>
 
