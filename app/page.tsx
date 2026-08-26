@@ -10,12 +10,12 @@ const microscopeSteps = [
 ] as const;
 
 const lensInfo = [
-  ['S', 'Statistical', 'Final outcomes and scores'],
-  ['C', 'Counterfactual', 'Treatment after one controlled change'],
-  ['O', 'Procedural', 'Unequal scrutiny before selection'],
-  ['P', 'Pathway', 'Where burden concentrates'],
-  ['E', 'Dynamic', 'How burden evolves in deliberation'],
-  ['D', 'Design', 'What system choices change'],
+  ['S', 'Statistical', 'Do groups receive different final outcomes or scores?', 'Compare hire-rate gaps, composite scores, and component-score differences.'],
+  ['C', 'Counterfactual', 'Does one controlled cue change treatment for merit-equivalent candidates?', 'Flip one field—such as career gap—then compare votes, scores, and decisions.'],
+  ['O', 'Procedural', 'Who receives unequal scrutiny before the decision?', 'Compare private risk cues and investigation-request rates across matched variants.'],
+  ['P', 'Pathway', 'At which pipeline stage does disadvantage concentrate?', 'Read Stage-1 pass rates, Stage-2 conversion, and their pathway decomposition.'],
+  ['E', 'Dynamic', 'How does burden evolve as agents deliberate?', 'Track score drift, bias pressure, and support or opposition across debate rounds.'],
+  ['D', 'Design', 'Which system choices induce, suppress, or relocate burden?', 'Contrast backends, agent topologies, memory, pressure settings, and interventions.'],
 ] as const;
 
 export default function Home() {
@@ -47,10 +47,12 @@ export default function Home() {
         <div className="hero-visual" aria-label="A process trajectory that converges on the same hiring outcome after different scrutiny">
           <div className="visual-caption"><span className="pulse" /> OUTCOME CAN CONVERGE · PROCESS CAN DIVERGE</div>
           <div className="mini-candidates"><div className="mini-candidate"><i>CV A</i><b>Matched merit</b><span>continuous history</span></div><div className="mini-candidate risk"><i>CV B</i><b>Matched merit</b><span>career-gap field</span></div></div>
-          <div className="visual-rails"><i /><i className="risk-rail" /></div>
-          <div className="agent-orbit"><span>Gatekeeper</span><span>Advocate</span><span>Pragmatist</span></div>
-          <div className="investigation-pop"><b>+ scrutiny</b><span>clarify gap context</span></div>
-          <div className="outcome-lockup"><div>HIRE</div><span>same final decision</span></div>
+          <div className="hero-panel"><span>STAGE 1 PANEL</span><div className="agent-orbit"><i>Gatekeeper</i><i>Advocate</i><i>Pragmatist</i></div></div>
+          <div className="visual-flow">
+            <div className="flow-row calm"><b>CV A</b><i /><span>standard review</span><strong>HIRE</strong></div>
+            <div className="flow-row risk"><b>CV B</b><i /><span><em>+ scrutiny</em> clarify gap context</span><strong>HIRE</strong></div>
+          </div>
+          <p className="outcome-lockup">same final decision · different preceding scrutiny</p>
         </div>
       </section>
 
@@ -68,9 +70,9 @@ export default function Home() {
       </section>
 
       <section className="section framework" id="framework">
-        <div className="section-copy"><p className="eyebrow">SIX FAIRNESS LENSES</p><h2>One trajectory. Six places to ask a fairness question.</h2></div>
+        <div className="section-copy"><p className="eyebrow">SIX FAIRNESS LENSES</p><h2>One trajectory. Six fairness questions.</h2><p>Each lens reads a different slice of the recorded decision trajectory—from final selections to controlled comparisons, scrutiny, stage transitions, deliberation, and system design.</p></div>
         <div className="lens-rail">{lensInfo.map((item, index) => <button className={lens === index ? 'selected' : ''} onClick={() => setLens(index)} key={item[0]}><b>{item[0]}</b><span>{item[1]}</span></button>)}</div>
-        <div className="lens-readout"><p><b>{lensInfo[lens][0]}</b> {lensInfo[lens][1]}</p><h3>{lensInfo[lens][2]}</h3><span>Each lens reads a different slice of the recorded decision trajectory.</span></div>
+        <div className="lens-readout"><p><b>{lensInfo[lens][0]}</b> {lensInfo[lens][1]}</p><h3>{lensInfo[lens][2]}</h3><span>{lensInfo[lens][3]}</span></div>
       </section>
 
       <section className="evidence" id="evidence">
@@ -86,7 +88,7 @@ export default function Home() {
         <div className="repair-board"><figure><img src="/figures/fairskills.svg" alt="Fair Skills intervention design and its layered fairness-burden results." /></figure><aside><p className="eyebrow">INT3 · FAIR SKILLS</p><strong>72.3%</strong><h3>lower total layered burden</h3><p>In the pooled Java + HR comparison, the total burden score falls from <b>8.59</b> to <b>2.38</b>.</p><small>The accompanying paper figure reports the intervention logic and full layer-level results.</small></aside></div>
       </section>
 
-      <section className="credit-section"><div className="section credit-inner"><div><p className="eyebrow">APPENDIX EXTENSION</p><h2>Change the domain interface. Preserve the audit logic.</h2><p>In simulated credit underwriting, SCOPED rebinds the outcome, signal library, score rubrics, and roles while retaining controlled variants and structured trajectory analysis.</p></div><div className="domain-swap"><article><span>HIRING</span><b>Hire / reject</b><small>CV cues · recruitment roles</small></article><i>→</i><article><span>CREDIT</span><b>Approve / decline</b><small>application cues · underwriting roles</small></article><p>same process-aware audit design</p></div></div></section>
+      <section className="credit-section"><div className="section credit-inner"><div><p className="eyebrow">APPENDIX EXTENSION</p><h2>A reusable audit logic for high-stakes MAS decisions.</h2><p>SCOPED is designed to travel across high-stakes multi-agent decisions. Its controlled-variant procedure, role- and stage-indexed traces, six lenses, and direction-aware burden analysis stay in place; the domain interface is what changes.</p><p className="credit-boundary">Our simulated credit-underwriting extension rebinds the outcome, applicant cues, score rubrics, and agent roles. It demonstrates portability of the audit design, not deployment readiness or a universal metric set.</p></div><div className="domain-swap"><article><span>WHAT STAYS</span><b>Audit procedure</b><small>matched variants · structured traces · six lenses</small></article><i>→</i><article><span>WHAT CHANGES</span><b>Domain interface</b><small>outcome · attributes · roles · rubrics</small></article><p>Hiring: hire / reject &nbsp; → &nbsp; Credit: approve / decline</p></div></div></section>
 
       <section className="section resources" id="resources"><p className="eyebrow">RESOURCES</p><h2>Follow the trajectory.</h2><div className="resource-grid"><span><b>Paper</b><small>Camera-ready version · coming soon</small></span><span><b>Code</b><small>GitHub repository · coming soon</small></span><span><b>Data</b><small>Hugging Face release · coming soon</small></span></div><div className="cite-card"><div><p className="eyebrow">CITE US</p><h3>Preprint coming soon.</h3><p>The complete BibTeX entry will appear here once the arXiv version is online.</p></div><button disabled>Copy BibTeX · coming soon</button></div></section>
       <footer><span>SCOPED-Hiring · EMNLP 2026</span><span>Process-aware fairness diagnosis for multi-agent decisions</span></footer>
@@ -95,15 +97,11 @@ export default function Home() {
 }
 
 function TraceCanvas({ step }: { step: number }) {
-  const showPanel = step >= 1;
-  const showSignal = step >= 2;
-  const showFinal = step >= 3;
-  return <div className={`trace-canvas stage-${step}`}>
-    <div className="pair-inputs"><CandidateCard title="Continuous history" detail="No career gap" tone="calm" /><CandidateCard title="Career-gap variant" detail="12-month gap" tone="risk" /></div>
-    <div className="hold-fixed">Matched: Python · APIs · SQL · 4 years · Java Developer</div>
-    {showPanel && <div className="agent-panel"><div className="panel-label">STAGE 1 · PRIVATE PANEL</div><AuditBubble role="Gatekeeper" tone="risk" body="Evidence to verify: career-gap context" /><AuditBubble role="Advocate" tone="calm" body="Task-relevant skills remain matched" /><AuditBubble role="Pragmatist" tone="neutral" body="Decision signal: pending panel review" /></div>}
-    {showSignal && <div className="signal-card"><span>VIRTUAL SCRUTINY SIGNAL</span><b>Request: clarify employment gap</b><small>extra verification requested for one matched variant</small><i>94% vs 32%</i></div>}
-    {showFinal && <div className="final-convergence"><div><b>HIRE</b><span>Continuous history</span></div><i>same outcome</i><div><b>HIRE</b><span>Career-gap variant</span></div><p>Outcome agreement does not erase the earlier difference in scrutiny.</p></div>}
+  return <div className={'trace-canvas stage-' + step}>
+    {step === 0 && <div className="trace-scene pair-scene"><div className="pair-inputs"><CandidateCard title="Continuous history" detail="No career gap" tone="calm" /><CandidateCard title="Career-gap variant" detail="12-month gap" tone="risk" /></div><div className="hold-fixed">Matched: Python · APIs · SQL · 4 years · Java Developer</div></div>}
+    {step === 1 && <div className="trace-scene panel-scene"><div className="scene-kicker">ONE CONTROLLED FIELD ENTERS THE PANEL</div><div className="agent-panel"><div className="panel-label">STAGE 1 · PRIVATE PANEL</div><AuditBubble role="Gatekeeper" tone="risk" body="Evidence to verify: career-gap context" /><AuditBubble role="Advocate" tone="calm" body="Task-relevant skills remain matched" /><AuditBubble role="Pragmatist" tone="neutral" body="Decision signal: pending panel review" /></div></div>}
+    {step === 2 && <div className="trace-scene signal-scene"><span>VIRTUAL SCRUTINY SIGNAL</span><b>Request: clarify employment gap</b><p>An additional verification request is recorded for the career-gap variant before selection.</p><div><strong>94%</strong><i>vs</i><strong>32%</strong></div><small>private risk-cue rate · career-gap vs no-gap · GPT</small></div>}
+    {step === 3 && <div className="trace-scene final-scene"><div className="final-convergence"><div><b>HIRE</b><span>Continuous history</span></div><i>same final outcome</i><div><b>HIRE</b><span>Career-gap variant</span></div><p>Outcome agreement does not erase the earlier difference in scrutiny.</p></div></div>}
   </div>;
 }
 
